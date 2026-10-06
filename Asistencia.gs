@@ -77,32 +77,53 @@ function obtenerParticipantes(idSesion) {
             2,
             1,
             hojaAsistencias.getLastRow() - 1,
-            4
+            5
           )
           .getValues();
 
-  const estadoPorParticipante = new Map();
+  const asistenciaPorParticipante = new Map();
 
   asistencias.forEach(fila => {
     if (fila[0] === idSesion) {
-      estadoPorParticipante.set(
+      asistenciaPorParticipante.set(
         fila[1],
-        fila[2]
+        {
+          estado: fila[2],
+          descripcion: fila[3] || ''
+        }
       );
     }
   });
 
   return participantes
     .filter(fila => fila[3] === true)
-    .map(fila => ({
-      id: fila[0],
-      nombre: fila[1],
-      correo: fila[2],
+    .map(fila => {
 
-      presente:
-        estadoPorParticipante.get(fila[0]) ===
-        'PRESENTE'
-    }));
+      const asistencia =
+        asistenciaPorParticipante.get(fila[0]);
+
+      return {
+        id: fila[0],
+        nombre: fila[1],
+        correo: fila[2],
+
+        presente:
+          asistencia
+            ? asistencia.estado === 'PRESENTE'
+            : false,
+
+        estado:
+          asistencia
+            ? asistencia.estado
+            : '',
+
+        descripcion:
+          asistencia
+            ? asistencia.descripcion
+            : ''
+      };
+
+    });
 }
 
 
@@ -202,7 +223,7 @@ function guardarAsistencia(idSesion, participantes) {
             2,
             1,
             hojaAsistencias.getLastRow() - 1,
-            4
+            5
           )
           .getValues();
 
@@ -218,68 +239,79 @@ function guardarAsistencia(idSesion, participantes) {
   const ahora = new Date();
 
   participantes.forEach(p => {
+
     const clave =
       `${idSesion}|${p.id}`;
 
+    // En una sesión nueva la descripción
+    // inicia vacía.
     const registro = [
       idSesion,
       p.id,
       p.presente
         ? 'PRESENTE'
         : 'AUSENTE',
+      '',
       ahora
     ];
 
     if (indice.has(clave)) {
+
       existentes[
         indice.get(clave)
       ] = registro;
+
     } else {
+
       indice.set(
         clave,
         existentes.length
       );
 
       existentes.push(registro);
+
     }
+
   });
 
-  // Limpiar datos anteriores
+  // Limpiar los datos anteriores
   if (hojaAsistencias.getLastRow() > 1) {
     hojaAsistencias
       .getRange(
         2,
         1,
         hojaAsistencias.getLastRow() - 1,
-        4
+        5
       )
       .clearContent();
   }
 
   // Escribir nuevamente los datos
   if (existentes.length > 0) {
+
     hojaAsistencias
       .getRange(
         2,
         1,
         existentes.length,
-        4
+        5
       )
       .setValues(existentes);
 
     hojaAsistencias
       .getRange(
         2,
-        4,
+        5,
         existentes.length,
         1
       )
       .setNumberFormat(
         'yyyy-mm-dd hh:mm:ss'
       );
+
   }
 
-  // Marcar sesión como registrada
+  // Marcar la sesión como registrada
   marcarSesionRegistrada_(idSesion);
 
   const presentes =
@@ -316,6 +348,124 @@ function guardarAsistencia(idSesion, participantes) {
 }
 
 
+function guardarDescripciones(idSesion, participantes) {
+  if (!idSesion) {
+    throw new Error(
+      'Debes seleccionar una sesión.'
+    );
+  }
+
+  if (!Array.isArray(participantes)) {
+    throw new Error(
+      'No se recibieron participantes.'
+    );
+  }
+
+  const ss = obtenerLibro_();
+
+  const hojaSesiones =
+    ss.getSheetByName(HOJAS.SESIONES);
+
+  const hojaAsistencias =
+    ss.getSheetByName(HOJAS.ASISTENCIAS);
+
+  if (!hojaSesiones || !hojaAsistencias) {
+    throw new Error(
+      'No se encontraron las hojas necesarias.'
+    );
+  }
+
+  // ======================================
+  // VALIDAR QUE LA SESIÓN YA ESTÉ GUARDADA
+  // ======================================
+
+  const datosSesiones = hojaSesiones
+    .getRange(
+      2,
+      1,
+      hojaSesiones.getLastRow() - 1,
+      5
+    )
+    .getValues();
+
+  const sesion = datosSesiones.find(
+    fila => fila[0] === idSesion
+  );
+
+  if (!sesion) {
+    throw new Error(
+      'La sesión seleccionada no existe.'
+    );
+  }
+
+  if (sesion[4] !== 'REGISTRADA') {
+    throw new Error(
+      'Solo se pueden agregar descripciones a sesiones ya registradas.'
+    );
+  }
+
+  if (hojaAsistencias.getLastRow() < 2) {
+    throw new Error(
+      'No existen registros de asistencia para esta sesión.'
+    );
+  }
+
+  const asistencias = hojaAsistencias
+    .getRange(
+      2,
+      1,
+      hojaAsistencias.getLastRow() - 1,
+      5
+    )
+    .getValues();
+
+  const participantesPorId = new Map();
+
+  participantes.forEach(p => {
+    participantesPorId.set(
+      p.id,
+      p.descripcion || ''
+    );
+  });
+
+  let cambios = 0;
+
+  asistencias.forEach((fila, indice) => {
+
+    const idSesionFila = fila[0];
+    const idParticipante = fila[1];
+    const estado = fila[2];
+
+    if (
+      idSesionFila === idSesion &&
+      estado === 'AUSENTE' &&
+      participantesPorId.has(idParticipante)
+    ) {
+
+      const descripcion =
+        participantesPorId.get(idParticipante);
+
+      hojaAsistencias
+        .getRange(
+          indice + 2,
+          4
+        )
+        .setValue(descripcion);
+
+      cambios++;
+
+    }
+
+  });
+
+  return {
+    ok: true,
+    idSesion,
+    cambios
+  };
+}
+
+
 function marcarSesionRegistrada_(idSesion) {
   const ss = obtenerLibro_();
 
@@ -344,11 +494,13 @@ function marcarSesionRegistrada_(idSesion) {
     );
 
   if (posicion >= 0) {
+
     hoja
       .getRange(
         posicion + 2,
         5
       )
       .setValue('REGISTRADA');
+
   }
 }

@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-
 <html lang="es">
 
 <head>
-
     <base target="_top">
-
     <meta charset="UTF-8">
 
     <style>
@@ -13,269 +10,268 @@
             box-sizing: border-box;
         }
 
-
         body {
-
             margin: 0;
-
             font-family: Arial, sans-serif;
-
             background: #f3f4f6;
-
             color: #111827;
-
         }
-
 
         .contenedor {
-
             max-width: 760px;
-
             margin: 0 auto;
-
             padding: 16px;
-
         }
-
 
         .panel {
-
             background: white;
-
             border-radius: 14px;
-
             padding: 18px;
-
             margin-bottom: 14px;
-
             box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
-
         }
-
 
         h1 {
-
             margin: 0 0 6px;
-
             font-size: 1.45rem;
-
         }
-
 
         .subtitulo {
-
             margin: 0;
-
             color: #6b7280;
-
         }
-
 
         label {
-
             display: block;
-
             margin-bottom: 6px;
-
             font-weight: 700;
-
         }
 
+        select,
+        button,
+        textarea {
+            font-family: inherit;
+        }
 
         select,
         button {
-
             width: 100%;
-
             min-height: 48px;
-
             border-radius: 10px;
-
             font-size: 1rem;
-
         }
-
 
         select {
-
             border: 1px solid #d1d5db;
-
             padding: 10px;
-
             background: white;
-
         }
-
 
         button {
-
             border: 0;
-
             padding: 12px 14px;
-
             font-weight: 700;
-
             cursor: pointer;
-
         }
 
+        button:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+        }
 
         .btn-secundario {
-
             background: #e5e7eb;
-
             color: #111827;
-
         }
-
 
         .btn-principal {
-
             background: #111827;
-
             color: white;
-
             margin-top: 12px;
-
         }
 
+        .btn-descripcion {
+            width: auto;
+            min-height: auto;
+            margin-top: 9px;
+            padding: 8px 11px;
+            background: #e5e7eb;
+            color: #111827;
+            font-size: .88rem;
+        }
 
         .acciones {
-
             display: grid;
-
             grid-template-columns: 1fr 1fr;
-
             gap: 10px;
-
             margin-top: 12px;
-
         }
 
+        .acciones.ocultas {
+            display: none;
+        }
 
         .resumen {
-
             display: flex;
-
             justify-content: space-between;
-
             gap: 10px;
-
             align-items: center;
-
             margin-top: 12px;
-
             font-weight: 700;
-
         }
-
 
         .participante {
-
             display: grid;
-
             grid-template-columns: 1fr auto;
-
             gap: 12px;
-
             align-items: center;
-
             padding: 14px 0;
-
             border-bottom: 1px solid #e5e7eb;
-
         }
-
 
         .participante:last-child {
-
             border-bottom: 0;
-
         }
-
 
         .nombre {
-
             font-weight: 700;
-
         }
-
 
         .correo {
-
             color: #6b7280;
-
             font-size: .9rem;
-
             overflow-wrap: anywhere;
-
+            margin-top: 3px;
         }
 
+        .estado {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 5px 9px;
+            border-radius: 999px;
+            font-size: .82rem;
+            font-weight: 700;
+        }
+
+        .estado-presente {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .estado-ausente {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .descripcion {
+            margin-top: 8px;
+            padding: 9px 10px;
+            background: #f9fafb;
+            border-radius: 8px;
+            color: #374151;
+            font-size: .9rem;
+            line-height: 1.4;
+        }
+
+        .descripcion strong {
+            display: block;
+            margin-bottom: 3px;
+        }
 
         .switch {
-
             width: 26px;
-
             height: 26px;
-
         }
-
 
         .mensaje {
-
             margin-top: 12px;
-
             padding: 10px;
-
             border-radius: 8px;
-
             display: none;
-
         }
-
 
         .ok {
-
             display: block;
-
             background: #dcfce7;
-
             color: #166534;
-
         }
-
 
         .error {
-
             display: block;
-
             background: #fee2e2;
-
             color: #991b1b;
-
         }
-
 
         .cargando {
-
             display: none;
-
             text-align: center;
-
             padding: 12px;
-
             color: #4b5563;
-
         }
 
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal-fondo {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .45);
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            z-index: 999;
+        }
+
+        .modal-fondo.visible {
+            display: flex;
+        }
+
+        .modal {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
+        }
+
+        .modal h2 {
+            margin-top: 0;
+            margin-bottom: 6px;
+            font-size: 1.2rem;
+        }
+
+        .modal-alumno {
+            margin: 0 0 14px;
+            color: #6b7280;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            resize: vertical;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        .modal-acciones {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 14px;
+        }
 
         @media (max-width: 520px) {
-
             .contenedor {
                 padding: 10px;
             }
 
-            .acciones {
+            .acciones,
+            .modal-acciones {
                 grid-template-columns: 1fr;
             }
 
@@ -283,9 +279,11 @@
                 padding: 14px;
             }
 
+            .participante {
+                grid-template-columns: 1fr auto;
+            }
         }
     </style>
-
 </head>
 
 <body>
@@ -296,7 +294,9 @@
 
             <h1>Control de asistencia</h1>
 
-            <p class="subtitulo">30 participantes · 10 sesiones</p>
+            <p class="subtitulo">
+                30 participantes · 10 sesiones
+            </p>
 
         </section>
 
@@ -306,24 +306,26 @@
             <label for="sesion">Sesión</label>
 
             <select id="sesion">
-
-                <option value="">Selecciona una sesión</option>
-
+                <option value="">
+                    Selecciona una sesión
+                </option>
             </select>
 
 
-            <div class="acciones">
+            <div id="accionesAsistencia" class="acciones">
 
-                <button class="btn-secundario" onclick="marcarTodos(true)">
-
+                <button
+                    class="btn-secundario"
+                    onclick="marcarTodos(true)"
+                >
                     Marcar todos
-
                 </button>
 
-                <button class="btn-secundario" onclick="marcarTodos(false)">
-
+                <button
+                    class="btn-secundario"
+                    onclick="marcarTodos(false)"
+                >
                     Desmarcar todos
-
                 </button>
 
             </div>
@@ -331,7 +333,9 @@
 
             <div class="resumen">
 
-                <span id="contador">Presentes: 0 / 0</span>
+                <span id="contador">
+                    Presentes: 0 / 0
+                </span>
 
                 <span id="estadoSesion"></span>
 
@@ -342,15 +346,20 @@
 
         <section class="panel">
 
-            <div id="cargando" class="cargando">Cargando...</div>
+            <div id="cargando" class="cargando">
+                Cargando...
+            </div>
 
             <div id="lista"></div>
 
 
-            <button id="guardar" class="btn-principal" onclick="guardar()" disabled>
-
+            <button
+                id="guardar"
+                class="btn-principal"
+                onclick="guardar()"
+                disabled
+            >
                 Guardar asistencia
-
             </button>
 
 
@@ -361,21 +370,77 @@
     </main>
 
 
+    <!-- =========================
+         MODAL DESCRIPCIÓN
+    ========================== -->
+
+    <div id="modalFondo" class="modal-fondo">
+
+        <div class="modal">
+
+            <h2>Descripción de ausencia</h2>
+
+            <p id="modalAlumno" class="modal-alumno"></p>
+
+            <label for="descripcionAusencia">
+                Descripción
+            </label>
+
+            <textarea
+                id="descripcionAusencia"
+                placeholder="Escribe el motivo o detalle de la ausencia..."
+            ></textarea>
+
+            <div class="modal-acciones">
+
+                <button
+                    class="btn-secundario"
+                    onclick="cerrarModal()"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    class="btn-principal"
+                    onclick="aceptarDescripcion()"
+                    style="margin-top:0;"
+                >
+                    Aceptar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
     <script>
 
         let participantes = [];
-
         let sesiones = [];
+        let participanteEditando = null;
 
 
-        document.addEventListener('DOMContentLoaded', cargarSesiones);
+        document.addEventListener(
+            'DOMContentLoaded',
+            cargarSesiones
+        );
 
-        document.getElementById('sesion').addEventListener('change', cargarParticipantes);
+
+        document
+            .getElementById('sesion')
+            .addEventListener(
+                'change',
+                cargarParticipantes
+            );
 
 
         function cargarSesiones() {
 
             mostrarCarga(true);
+
+            ocultarMensaje();
 
             google.script.run
 
@@ -386,11 +451,11 @@
                     const select =
                         document.getElementById('sesion');
 
-                    // Limpiar opciones anteriores
                     select.innerHTML =
                         '<option value="">Selecciona una sesión</option>';
 
                     let primeraPendiente = null;
+
 
                     sesiones.forEach(s => {
 
@@ -400,77 +465,119 @@
                         option.value = s.id;
 
                         option.textContent =
-                            `Sesión ${s.numero} - ${s.fecha || 'sin fecha'} - ${s.tema}`;
+                            `Sesión ${s.numero} - ` +
+                            `${s.fecha || 'sin fecha'} - ` +
+                            `${s.tema}`;
+
 
                         if (s.estado === 'REGISTRADA') {
 
-                        option.disabled = true;
+                            /*
+                             * Las sesiones registradas sí se pueden
+                             * consultar.
+                             */
 
-                        option.textContent += ' ✓ REGISTRADA';
+                            option.textContent +=
+                                ' ✓ REGISTRADA';
 
-                    } else if (!primeraPendiente) {
+                        } else if (!primeraPendiente) {
 
-                        // Primera sesión pendiente:
-                        // es la única disponible
-                        primeraPendiente = s;
+                            /*
+                             * La primera pendiente es la sesión
+                             * actual disponible.
+                             */
 
-                        option.textContent;
+                            primeraPendiente = s;
 
-                    } else {
+                            option.textContent;
 
-                        // Sesiones futuras bloqueadas
-                        option.disabled = true;
+                        } else {
 
-                        option.textContent += ' 🔒';
+                            /*
+                             * Las sesiones futuras permanecen
+                             * bloqueadas.
+                             */
+
+                            option.disabled = true;
+
+                            option.textContent +=
+                                ' 🔒';
+
+                        }
+
+
+                        select.appendChild(option);
+
+                    });
+
+
+                    mostrarCarga(false);
+
+
+                    /*
+                     * Seleccionar automáticamente la primera
+                     * sesión pendiente.
+                     */
+
+                    if (primeraPendiente) {
+
+                        select.value =
+                            primeraPendiente.id;
+
+                        cargarParticipantes();
+
+                    } else if (sesiones.length > 0) {
+
+                        /*
+                         * Si las 10 sesiones ya fueron
+                         * registradas, dejamos disponible la
+                         * consulta pero no seleccionamos una
+                         * automáticamente.
+                         */
+
+                        participantes = [];
+
+                        document.getElementById('lista')
+                            .innerHTML =
+                            '<p>Todas las sesiones han sido registradas. Puedes seleccionar una sesión para consultar sus asistencias.</p>';
+
+                        document.getElementById('guardar')
+                            .disabled = true;
+
+                        document.getElementById('estadoSesion')
+                            .textContent = 'FINALIZADO';
+
+                        document.getElementById(
+                            'accionesAsistencia'
+                        ).classList.add('ocultas');
+
+                        actualizarContador();
 
                     }
 
-                    select.appendChild(option);
-
-                });
-
-            mostrarCarga(false);
-
-            // Seleccionar automáticamente
-            // la primera sesión pendiente
-            if (primeraPendiente) {
-
-                select.value = primeraPendiente.id;
-
-                cargarParticipantes();
-
-            } else {
-
-                participantes = [];
-
-                document.getElementById('lista').innerHTML =
-                    '<p>Todas las sesiones han sido registradas.</p>';
-
-                document.getElementById('guardar').disabled = true;
-
-                document.getElementById('estadoSesion').textContent =
-                    'FINALIZADO';
-
-                actualizarContador();
-
-            }
-
-        })
+                })
 
                 .withFailureHandler(mostrarError)
 
-            .obtenerSesiones();
+                .obtenerSesiones();
 
         }
 
 
         function cargarParticipantes() {
 
-            const idSesion = document.getElementById('sesion').value;
+            const idSesion =
+                document.getElementById('sesion').value;
 
-            document.getElementById('lista').innerHTML = '';
+            const guardar =
+                document.getElementById('guardar');
 
-            document.getElementById('guardar').disabled = true;
+            document.getElementById('lista')
+                .innerHTML = '';
+
+            guardar.disabled = true;
+
+            ocultarMensaje();
 
 
             if (!idSesion) {
@@ -479,17 +586,25 @@
 
                 actualizarContador();
 
-                document.getElementById('estadoSesion').textContent = '';
+                document.getElementById('estadoSesion')
+                    .textContent = '';
+
+                document.getElementById(
+                    'accionesAsistencia'
+                ).classList.add('ocultas');
 
                 return;
 
             }
 
 
-            const sesion = sesiones.find(s => s.id === idSesion);
+            const sesion =
+                sesiones.find(
+                    s => s.id === idSesion
+                );
 
-            document.getElementById('estadoSesion').textContent =
-
+            document.getElementById('estadoSesion')
+                .textContent =
                 sesion ? sesion.estado : '';
 
 
@@ -500,13 +615,50 @@
 
                 .withSuccessHandler(datos => {
 
-                    participantes = datos || [];
+                    participantes =
+                        datos || [];
 
                     renderParticipantes();
 
                     mostrarCarga(false);
 
-                    document.getElementById('guardar').disabled = false;
+
+                    if (
+                        sesion &&
+                        sesion.estado === 'REGISTRADA'
+                    ) {
+
+                        /*
+                         * Sesión registrada:
+                         * solo lectura de asistencia.
+                         */
+
+                        document.getElementById(
+                            'accionesAsistencia'
+                        ).classList.add('ocultas');
+
+                        guardar.textContent =
+                            'Guardar cambios';
+
+                        guardar.disabled = false;
+
+                    } else {
+
+                        /*
+                         * Sesión pendiente:
+                         * asistencia editable.
+                         */
+
+                        document.getElementById(
+                            'accionesAsistencia'
+                        ).classList.remove('ocultas');
+
+                        guardar.textContent =
+                            'Guardar asistencia';
+
+                        guardar.disabled = false;
+
+                    }
 
                 })
 
@@ -519,53 +671,178 @@
 
         function renderParticipantes() {
 
-            const lista = document.getElementById('lista');
+            const lista =
+                document.getElementById('lista');
+
+            const idSesion =
+                document.getElementById('sesion').value;
+
+            const sesion =
+                sesiones.find(
+                    s => s.id === idSesion
+                );
+
+            const registrada =
+                sesion &&
+                sesion.estado === 'REGISTRADA';
+
 
             lista.innerHTML = '';
 
 
-            participantes.forEach((p, indice) => {
+            participantes.forEach(
+                (p, indice) => {
 
-                const fila = document.createElement('div');
+                    const fila =
+                        document.createElement('div');
 
-                fila.className = 'participante';
-
-
-                const datos = document.createElement('div');
-
-                datos.innerHTML = `
-
-          <div class="nombre">${p.id} · ${escapar(p.nombre)}</div>
-
-          <div class="correo">${escapar(p.correo)}</div>
-
-        `;
+                    fila.className =
+                        'participante';
 
 
-                const check = document.createElement('input');
-
-                check.type = 'checkbox';
-
-                check.className = 'switch';
-
-                check.checked = Boolean(p.presente);
-
-                check.addEventListener('change', () => {
-
-                    participantes[indice].presente = check.checked;
-
-                    actualizarContador();
-
-                });
+                    const datos =
+                        document.createElement('div');
 
 
-                fila.appendChild(datos);
+                    let contenido = `
 
-                fila.appendChild(check);
+                        <div class="nombre">
+                            ${escapar(p.id)} ·
+                            ${escapar(p.nombre)}
+                        </div>
 
-                lista.appendChild(fila);
+                        <div class="correo">
+                            ${escapar(p.correo)}
+                        </div>
 
-            });
+                    `;
+
+
+                    /*
+                     * SESIÓN REGISTRADA
+                     */
+
+                    if (registrada) {
+
+                        const estado =
+                            p.estado ||
+                            (
+                                p.presente
+                                    ? 'PRESENTE'
+                                    : 'AUSENTE'
+                            );
+
+
+                        contenido += `
+
+                            <div class="estado ${
+                                estado === 'PRESENTE'
+                                    ? 'estado-presente'
+                                    : 'estado-ausente'
+                            }">
+                                ${escapar(estado)}
+                            </div>
+
+                        `;
+
+
+                        /*
+                         * Solo los ausentes pueden tener
+                         * descripción.
+                         */
+
+                        if (estado === 'AUSENTE') {
+
+                            if (p.descripcion) {
+
+                                contenido += `
+
+                                    <div class="descripcion">
+
+                                        <strong>
+                                            Descripción:
+                                        </strong>
+
+                                        ${escapar(p.descripcion)}
+
+                                    </div>
+
+                                `;
+
+                            }
+
+
+                            contenido += `
+
+                                <button
+                                    type="button"
+                                    class="btn-descripcion"
+                                    onclick="abrirModalDescripcion(${indice})"
+                                >
+                                    ${
+                                        p.descripcion
+                                            ? 'Editar descripción'
+                                            : 'Agregar descripción'
+                                    }
+                                </button>
+
+                            `;
+
+                        }
+
+                    }
+
+
+                    datos.innerHTML =
+                        contenido;
+
+
+                    fila.appendChild(datos);
+
+
+                    /*
+                     * En sesiones pendientes seguimos usando
+                     * el checkbox.
+                     */
+
+                    if (!registrada) {
+
+                        const check =
+                            document.createElement('input');
+
+                        check.type =
+                            'checkbox';
+
+                        check.className =
+                            'switch';
+
+                        check.checked =
+                            Boolean(p.presente);
+
+
+                        check.addEventListener(
+                            'change',
+                            () => {
+
+                                participantes[indice]
+                                    .presente =
+                                    check.checked;
+
+                                actualizarContador();
+
+                            }
+                        );
+
+
+                        fila.appendChild(check);
+
+                    }
+
+
+                    lista.appendChild(fila);
+
+                }
+            );
 
 
             actualizarContador();
@@ -575,13 +852,29 @@
 
         function marcarTodos(valor) {
 
-            participantes = participantes.map(p => ({
+            const idSesion =
+                document.getElementById('sesion').value;
 
-                ...p,
+            const sesion =
+                sesiones.find(
+                    s => s.id === idSesion
+                );
 
-                presente: valor
 
-            }));
+            if (
+                !sesion ||
+                sesion.estado === 'REGISTRADA'
+            ) {
+                return;
+            }
+
+
+            participantes =
+                participantes.map(p => ({
+                    ...p,
+                    presente: valor
+                }));
+
 
             renderParticipantes();
 
@@ -590,10 +883,14 @@
 
         function actualizarContador() {
 
-            const presentes = participantes.filter(p => p.presente).length;
+            const presentes =
+                participantes.filter(
+                    p => p.presente
+                ).length;
 
-            document.getElementById('contador').textContent =
 
+            document.getElementById('contador')
+                .textContent =
                 `Presentes: ${presentes} / ${participantes.length}`;
 
         }
@@ -603,6 +900,7 @@
 
             const idSesion =
                 document.getElementById('sesion').value;
+
 
             if (!idSesion) {
 
@@ -615,9 +913,57 @@
 
             }
 
-            document.getElementById('guardar').disabled = true;
+
+            const sesion =
+                sesiones.find(
+                    s => s.id === idSesion
+                );
+
+
+            if (!sesion) {
+
+                mostrarMensaje(
+                    'No se encontró la sesión seleccionada.',
+                    false
+                );
+
+                return;
+
+            }
+
+
+            /*
+             * Si ya está registrada,
+             * solo guardamos descripciones.
+             */
+
+            if (sesion.estado === 'REGISTRADA') {
+
+                guardarDescripciones();
+
+                return;
+
+            }
+
+
+            guardarAsistencia();
+
+        }
+
+
+        function guardarAsistencia() {
+
+            const idSesion =
+                document.getElementById('sesion').value;
+
+            const boton =
+                document.getElementById('guardar');
+
+
+            boton.disabled = true;
 
             mostrarCarga(true);
+
 
             google.script.run
 
@@ -632,17 +978,24 @@
                         true
                     );
 
-                    // Actualizar localmente
-                    const sesion = sesiones.find(
-                        s => s.id === idSesion
-                    );
+
+                    const sesion =
+                        sesiones.find(
+                            s => s.id === idSesion
+                        );
+
 
                     if (sesion) {
-                        sesion.estado = 'REGISTRADA';
+                        sesion.estado =
+                            'REGISTRADA';
                     }
 
-                    // Esperar un momento y cargar
-                    // automáticamente la siguiente sesión
+
+                    /*
+                     * Después de registrar una sesión,
+                     * pasar automáticamente a la siguiente.
+                     */
+
                     setTimeout(() => {
 
                         cargarSesiones();
@@ -655,7 +1008,8 @@
 
                     mostrarCarga(false);
 
-                    document.getElementById('guardar').disabled = false;
+                    boton.disabled =
+                        false;
 
                     mostrarError(error);
 
@@ -669,11 +1023,173 @@
         }
 
 
+        function guardarDescripciones() {
+
+            const idSesion =
+                document.getElementById('sesion').value;
+
+            const boton =
+                document.getElementById('guardar');
+
+
+            boton.disabled = true;
+
+            mostrarCarga(true);
+
+
+            google.script.run
+
+                .withSuccessHandler(resultado => {
+
+                    mostrarCarga(false);
+
+                    boton.disabled =
+                        false;
+
+
+                    mostrarMensaje(
+                        'Los cambios se guardaron correctamente.',
+                        true
+                    );
+
+
+                    /*
+                     * Volver a cargar participantes para
+                     * confirmar la información guardada.
+                     */
+
+                    cargarParticipantes();
+
+                })
+
+                .withFailureHandler(error => {
+
+                    mostrarCarga(false);
+
+                    boton.disabled =
+                        false;
+
+                    mostrarError(error);
+
+                })
+
+                .guardarDescripciones(
+                    idSesion,
+                    participantes
+                );
+
+        }
+
+
+        function abrirModalDescripcion(indice) {
+
+            const participante =
+                participantes[indice];
+
+
+            if (!participante) {
+                return;
+            }
+
+
+            const estado =
+                participante.estado ||
+                (
+                    participante.presente
+                        ? 'PRESENTE'
+                        : 'AUSENTE'
+                );
+
+
+            if (estado !== 'AUSENTE') {
+                return;
+            }
+
+
+            participanteEditando =
+                indice;
+
+
+            document.getElementById(
+                'modalAlumno'
+            ).textContent =
+                `${participante.id} · ${participante.nombre}`;
+
+
+            document.getElementById(
+                'descripcionAusencia'
+            ).value =
+                participante.descripcion || '';
+
+
+            document.getElementById(
+                'modalFondo'
+            ).classList.add('visible');
+
+
+            setTimeout(() => {
+
+                document.getElementById(
+                    'descripcionAusencia'
+                ).focus();
+
+            }, 50);
+
+        }
+
+
+        function cerrarModal() {
+
+            participanteEditando =
+                null;
+
+
+            document.getElementById(
+                'modalFondo'
+            ).classList.remove('visible');
+
+
+            document.getElementById(
+                'descripcionAusencia'
+            ).value = '';
+
+        }
+
+
+        function aceptarDescripcion() {
+
+            if (participanteEditando === null) {
+                return;
+            }
+
+
+            const descripcion =
+                document.getElementById(
+                    'descripcionAusencia'
+                ).value.trim();
+
+
+            participantes[
+                participanteEditando
+            ].descripcion =
+                descripcion;
+
+
+            cerrarModal();
+
+            renderParticipantes();
+
+        }
+
+
         function mostrarCarga(visible) {
 
-            document.getElementById('cargando').style.display =
-
-                visible ? 'block' : 'none';
+            document.getElementById(
+                'cargando'
+            ).style.display =
+                visible
+                    ? 'block'
+                    : 'none';
 
         }
 
@@ -682,43 +1198,124 @@
 
             mostrarCarga(false);
 
-            const texto = error && error.message
+            const texto =
+                error &&
+                error.message
+                    ? error.message
+                    : String(error);
 
-                ? error.message
 
-                : String(error);
+            console.error(
+                'Error:',
+                error
+            );
 
-            mostrarMensaje(texto, false);
+
+            mostrarMensaje(
+                texto,
+                false
+            );
 
         }
 
 
-        function mostrarMensaje(texto, correcto) {
+        function mostrarMensaje(
+            texto,
+            correcto
+        ) {
 
-            const mensaje = document.getElementById('mensaje');
+            const mensaje =
+                document.getElementById(
+                    'mensaje'
+                );
 
-            mensaje.textContent = texto;
 
-            mensaje.className = `mensaje ${correcto ? 'ok' : 'error'}`;
+            mensaje.textContent =
+                texto;
+
+
+            mensaje.className =
+                `mensaje ${
+                    correcto
+                        ? 'ok'
+                        : 'error'
+                }`;
+
+        }
+
+
+        function ocultarMensaje() {
+
+            const mensaje =
+                document.getElementById(
+                    'mensaje'
+                );
+
+
+            mensaje.textContent =
+                '';
+
+            mensaje.className =
+                'mensaje';
 
         }
 
 
         function escapar(texto) {
 
-            return String(texto ?? '')
+            return String(
+                texto ?? ''
+            )
 
-                .replaceAll('&', '&amp;')
+                .replaceAll(
+                    '&',
+                    '&amp;'
+                )
 
-                .replaceAll('<', '&lt;')
+                .replaceAll(
+                    '<',
+                    '&lt;'
+                )
 
-                .replaceAll('>', '&gt;')
+                .replaceAll(
+                    '>',
+                    '&gt;'
+                )
 
-                .replaceAll('"', '&quot;')
+                .replaceAll(
+                    '"',
+                    '&quot;'
+                )
 
-                .replaceAll("'", '&#039;');
+                .replaceAll(
+                    "'",
+                    '&#039;'
+                );
 
         }
+
+
+        /*
+         * Cerrar modal al pulsar sobre
+         * el fondo oscuro.
+         */
+
+        document
+            .getElementById(
+                'modalFondo'
+            )
+            .addEventListener(
+                'click',
+                function (event) {
+
+                    if (
+                        event.target === this
+                    ) {
+                        cerrarModal();
+                    }
+
+                }
+            );
 
     </script>
 
