@@ -4,478 +4,536 @@
 
 <head>
 
-  <base target="_top">
+    <base target="_top">
 
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-  <style>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    * { box-sizing: border-box; }
 
+        body {
 
-    body {
+            margin: 0;
 
-      margin: 0;
+            font-family: Arial, sans-serif;
 
-      font-family: Arial, sans-serif;
+            background: #f3f4f6;
 
-      background: #f3f4f6;
+            color: #111827;
 
-      color: #111827;
+        }
 
-    }
 
+        .contenedor {
 
-    .contenedor {
+            max-width: 760px;
 
-      max-width: 760px;
+            margin: 0 auto;
 
-      margin: 0 auto;
+            padding: 16px;
 
-      padding: 16px;
+        }
 
-    }
 
+        .panel {
 
-    .panel {
+            background: white;
 
-      background: white;
+            border-radius: 14px;
 
-      border-radius: 14px;
+            padding: 18px;
 
-      padding: 18px;
+            margin-bottom: 14px;
 
-      margin-bottom: 14px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
 
-      box-shadow: 0 2px 10px rgba(0,0,0,.08);
+        }
 
-    }
 
+        h1 {
 
-    h1 {
+            margin: 0 0 6px;
 
-      margin: 0 0 6px;
+            font-size: 1.45rem;
 
-      font-size: 1.45rem;
+        }
 
-    }
 
+        .subtitulo {
 
-    .subtitulo {
+            margin: 0;
 
-      margin: 0;
+            color: #6b7280;
 
-      color: #6b7280;
+        }
 
-    }
 
+        label {
 
-    label {
+            display: block;
 
-      display: block;
+            margin-bottom: 6px;
 
-      margin-bottom: 6px;
+            font-weight: 700;
 
-      font-weight: 700;
+        }
 
-    }
 
+        select,
+        button {
 
-    select, button {
+            width: 100%;
 
-      width: 100%;
+            min-height: 48px;
 
-      min-height: 48px;
+            border-radius: 10px;
 
-      border-radius: 10px;
+            font-size: 1rem;
 
-      font-size: 1rem;
+        }
 
-    }
 
+        select {
 
-    select {
+            border: 1px solid #d1d5db;
 
-      border: 1px solid #d1d5db;
+            padding: 10px;
 
-      padding: 10px;
+            background: white;
 
-      background: white;
+        }
 
-    }
 
+        button {
 
-    button {
+            border: 0;
 
-      border: 0;
+            padding: 12px 14px;
 
-      padding: 12px 14px;
+            font-weight: 700;
 
-      font-weight: 700;
+            cursor: pointer;
 
-      cursor: pointer;
+        }
 
-    }
 
+        .btn-secundario {
 
-    .btn-secundario {
+            background: #e5e7eb;
 
-      background: #e5e7eb;
+            color: #111827;
 
-      color: #111827;
+        }
 
-    }
 
+        .btn-principal {
 
-    .btn-principal {
+            background: #111827;
 
-      background: #111827;
+            color: white;
 
-      color: white;
+            margin-top: 12px;
 
-      margin-top: 12px;
+        }
 
-    }
 
+        .acciones {
 
-    .acciones {
+            display: grid;
 
-      display: grid;
+            grid-template-columns: 1fr 1fr;
 
-      grid-template-columns: 1fr 1fr;
+            gap: 10px;
 
-      gap: 10px;
+            margin-top: 12px;
 
-      margin-top: 12px;
+        }
 
-    }
 
+        .resumen {
 
-    .resumen {
+            display: flex;
 
-      display: flex;
+            justify-content: space-between;
 
-      justify-content: space-between;
+            gap: 10px;
 
-      gap: 10px;
+            align-items: center;
 
-      align-items: center;
+            margin-top: 12px;
 
-      margin-top: 12px;
+            font-weight: 700;
 
-      font-weight: 700;
+        }
 
-    }
 
+        .participante {
 
-    .participante {
+            display: grid;
 
-      display: grid;
+            grid-template-columns: 1fr auto;
 
-      grid-template-columns: 1fr auto;
+            gap: 12px;
 
-      gap: 12px;
+            align-items: center;
 
-      align-items: center;
+            padding: 14px 0;
 
-      padding: 14px 0;
+            border-bottom: 1px solid #e5e7eb;
 
-      border-bottom: 1px solid #e5e7eb;
+        }
 
-    }
 
+        .participante:last-child {
 
-    .participante:last-child {
+            border-bottom: 0;
 
-      border-bottom: 0;
+        }
 
-    }
 
+        .nombre {
 
-    .nombre {
+            font-weight: 700;
 
-      font-weight: 700;
+        }
 
-    }
 
+        .correo {
 
-    .correo {
+            color: #6b7280;
 
-      color: #6b7280;
+            font-size: .9rem;
 
-      font-size: .9rem;
+            overflow-wrap: anywhere;
 
-      overflow-wrap: anywhere;
+        }
 
-    }
 
+        .switch {
 
-    .switch {
+            width: 26px;
 
-      width: 26px;
+            height: 26px;
 
-      height: 26px;
+        }
 
-    }
 
+        .mensaje {
 
-    .mensaje {
+            margin-top: 12px;
 
-      margin-top: 12px;
+            padding: 10px;
 
-      padding: 10px;
+            border-radius: 8px;
 
-      border-radius: 8px;
+            display: none;
 
-      display: none;
+        }
 
-    }
 
+        .ok {
 
-    .ok {
+            display: block;
 
-      display: block;
+            background: #dcfce7;
 
-      background: #dcfce7;
+            color: #166534;
 
-      color: #166534;
+        }
 
-    }
 
+        .error {
 
-    .error {
+            display: block;
 
-      display: block;
+            background: #fee2e2;
 
-      background: #fee2e2;
+            color: #991b1b;
 
-      color: #991b1b;
+        }
 
-    }
 
+        .cargando {
 
-    .cargando {
+            display: none;
 
-      display: none;
+            text-align: center;
 
-      text-align: center;
+            padding: 12px;
 
-      padding: 12px;
+            color: #4b5563;
 
-      color: #4b5563;
+        }
 
-    }
 
+        @media (max-width: 520px) {
 
-    @media (max-width: 520px) {
+            .contenedor {
+                padding: 10px;
+            }
 
-      .contenedor { padding: 10px; }
+            .acciones {
+                grid-template-columns: 1fr;
+            }
 
-      .acciones { grid-template-columns: 1fr; }
+            .panel {
+                padding: 14px;
+            }
 
-      .panel { padding: 14px; }
-
-    }
-
-  </style>
+        }
+    </style>
 
 </head>
 
 <body>
 
-  <main class="contenedor">
+    <main class="contenedor">
 
-    <section class="panel">
+        <section class="panel">
 
-      <h1>Control de asistencia</h1>
+            <h1>Control de asistencia</h1>
 
-      <p class="subtitulo">30 participantes · 10 sesiones</p>
+            <p class="subtitulo">30 participantes · 10 sesiones</p>
 
-    </section>
-
-
-    <section class="panel">
-
-      <label for="sesion">Sesión</label>
-
-      <select id="sesion">
-
-        <option value="">Selecciona una sesión</option>
-
-      </select>
+        </section>
 
 
-      <div class="acciones">
+        <section class="panel">
 
-        <button class="btn-secundario" onclick="marcarTodos(true)">
+            <label for="sesion">Sesión</label>
 
-          Marcar todos
+            <select id="sesion">
 
-        </button>
+                <option value="">Selecciona una sesión</option>
 
-        <button class="btn-secundario" onclick="marcarTodos(false)">
-
-          Desmarcar todos
-
-        </button>
-
-      </div>
+            </select>
 
 
-      <div class="resumen">
+            <div class="acciones">
 
-        <span id="contador">Presentes: 0 / 0</span>
+                <button class="btn-secundario" onclick="marcarTodos(true)">
 
-        <span id="estadoSesion"></span>
+                    Marcar todos
 
-      </div>
+                </button>
 
-    </section>
+                <button class="btn-secundario" onclick="marcarTodos(false)">
 
+                    Desmarcar todos
 
-    <section class="panel">
+                </button>
 
-      <div id="cargando" class="cargando">Cargando...</div>
-
-      <div id="lista"></div>
-
-
-      <button id="guardar" class="btn-principal" onclick="guardar()" disabled>
-
-        Guardar asistencia
-
-      </button>
+            </div>
 
 
-      <div id="mensaje" class="mensaje"></div>
+            <div class="resumen">
 
-    </section>
+                <span id="contador">Presentes: 0 / 0</span>
 
-  </main>
+                <span id="estadoSesion"></span>
 
+            </div>
 
-  <script>
-
-    let participantes = [];
-
-    let sesiones = [];
+        </section>
 
 
-    document.addEventListener('DOMContentLoaded', cargarSesiones);
+        <section class="panel">
 
-    document.getElementById('sesion').addEventListener('change', cargarParticipantes);
+            <div id="cargando" class="cargando">Cargando...</div>
 
-
-    function cargarSesiones() {
-
-      mostrarCarga(true);
+            <div id="lista"></div>
 
 
-      google.script.run
+            <button id="guardar" class="btn-principal" onclick="guardar()" disabled>
 
-        .withSuccessHandler(datos => {
+                Guardar asistencia
 
-          sesiones = datos || [];
-
-          const select = document.getElementById('sesion');
+            </button>
 
 
-          sesiones.forEach(s => {
+            <div id="mensaje" class="mensaje"></div>
 
-            const option = document.createElement('option');
+        </section>
 
-            option.value = s.id;
-
-            option.textContent =
-
-              `Sesión ${s.numero} - ${s.fecha || 'sin fecha'} - ${s.tema}`;
-
-            select.appendChild(option);
-
-          });
+    </main>
 
 
-          mostrarCarga(false);
+    <script>
+
+        let participantes = [];
+
+        let sesiones = [];
+
+
+        document.addEventListener('DOMContentLoaded', cargarSesiones);
+
+        document.getElementById('sesion').addEventListener('change', cargarParticipantes);
+
+
+        function cargarSesiones() {
+
+            mostrarCarga(true);
+
+            google.script.run
+
+                .withSuccessHandler(datos => {
+
+                    sesiones = datos || [];
+
+                    const select =
+                        document.getElementById('sesion');
+
+                    // Limpiar opciones anteriores
+                    select.innerHTML =
+                        '<option value="">Selecciona una sesión</option>';
+
+                    let primeraPendiente = null;
+
+                    sesiones.forEach(s => {
+
+                        const option =
+                            document.createElement('option');
+
+                        option.value = s.id;
+
+                        option.textContent =
+                            `Sesión ${s.numero} - ${s.fecha || 'sin fecha'} - ${s.tema}`;
+
+                        if (s.estado === 'REGISTRADA') {
+
+                        option.disabled = true;
+
+                        option.textContent += ' ✓ REGISTRADA';
+
+                    } else if (!primeraPendiente) {
+
+                        // Primera sesión pendiente:
+                        // es la única disponible
+                        primeraPendiente = s;
+
+                        option.textContent;
+
+                    } else {
+
+                        // Sesiones futuras bloqueadas
+                        option.disabled = true;
+
+                        option.textContent += ' 🔒';
+
+                    }
+
+                    select.appendChild(option);
+
+                });
+
+            mostrarCarga(false);
+
+            // Seleccionar automáticamente
+            // la primera sesión pendiente
+            if (primeraPendiente) {
+
+                select.value = primeraPendiente.id;
+
+                cargarParticipantes();
+
+            } else {
+
+                participantes = [];
+
+                document.getElementById('lista').innerHTML =
+                    '<p>Todas las sesiones han sido registradas.</p>';
+
+                document.getElementById('guardar').disabled = true;
+
+                document.getElementById('estadoSesion').textContent =
+                    'FINALIZADO';
+
+                actualizarContador();
+
+            }
 
         })
 
-        .withFailureHandler(mostrarError)
+                .withFailureHandler(mostrarError)
 
-        .obtenerSesiones();
+            .obtenerSesiones();
 
-    }
-
-
-    function cargarParticipantes() {
-
-      const idSesion = document.getElementById('sesion').value;
-
-      document.getElementById('lista').innerHTML = '';
-
-      document.getElementById('guardar').disabled = true;
+        }
 
 
-      if (!idSesion) {
+        function cargarParticipantes() {
 
-        participantes = [];
+            const idSesion = document.getElementById('sesion').value;
 
-        actualizarContador();
+            document.getElementById('lista').innerHTML = '';
 
-        document.getElementById('estadoSesion').textContent = '';
-
-        return;
-
-      }
+            document.getElementById('guardar').disabled = true;
 
 
-      const sesion = sesiones.find(s => s.id === idSesion);
+            if (!idSesion) {
 
-      document.getElementById('estadoSesion').textContent =
+                participantes = [];
 
-        sesion ? sesion.estado : '';
+                actualizarContador();
 
+                document.getElementById('estadoSesion').textContent = '';
 
-      mostrarCarga(true);
+                return;
 
-
-      google.script.run
-
-        .withSuccessHandler(datos => {
-
-          participantes = datos || [];
-
-          renderParticipantes();
-
-          mostrarCarga(false);
-
-          document.getElementById('guardar').disabled = false;
-
-        })
-
-        .withFailureHandler(mostrarError)
-
-        .obtenerParticipantes(idSesion);
-
-    }
+            }
 
 
-    function renderParticipantes() {
+            const sesion = sesiones.find(s => s.id === idSesion);
 
-      const lista = document.getElementById('lista');
+            document.getElementById('estadoSesion').textContent =
 
-      lista.innerHTML = '';
-
-
-      participantes.forEach((p, indice) => {
-
-        const fila = document.createElement('div');
-
-        fila.className = 'participante';
+                sesion ? sesion.estado : '';
 
 
-        const datos = document.createElement('div');
+            mostrarCarga(true);
 
-        datos.innerHTML = `
+
+            google.script.run
+
+                .withSuccessHandler(datos => {
+
+                    participantes = datos || [];
+
+                    renderParticipantes();
+
+                    mostrarCarga(false);
+
+                    document.getElementById('guardar').disabled = false;
+
+                })
+
+                .withFailureHandler(mostrarError)
+
+                .obtenerParticipantes(idSesion);
+
+        }
+
+
+        function renderParticipantes() {
+
+            const lista = document.getElementById('lista');
+
+            lista.innerHTML = '';
+
+
+            participantes.forEach((p, indice) => {
+
+                const fila = document.createElement('div');
+
+                fila.className = 'participante';
+
+
+                const datos = document.createElement('div');
+
+                datos.innerHTML = `
 
           <div class="nombre">${p.id} · ${escapar(p.nombre)}</div>
 
@@ -484,181 +542,186 @@
         `;
 
 
-        const check = document.createElement('input');
+                const check = document.createElement('input');
 
-        check.type = 'checkbox';
+                check.type = 'checkbox';
 
-        check.className = 'switch';
+                check.className = 'switch';
 
-        check.checked = Boolean(p.presente);
+                check.checked = Boolean(p.presente);
 
-        check.addEventListener('change', () => {
+                check.addEventListener('change', () => {
 
-          participantes[indice].presente = check.checked;
+                    participantes[indice].presente = check.checked;
 
-          actualizarContador();
+                    actualizarContador();
 
-        });
+                });
 
 
-        fila.appendChild(datos);
+                fila.appendChild(datos);
 
-        fila.appendChild(check);
+                fila.appendChild(check);
 
-        lista.appendChild(fila);
+                lista.appendChild(fila);
 
-      });
+            });
 
 
-      actualizarContador();
+            actualizarContador();
 
-    }
+        }
 
 
-    function marcarTodos(valor) {
+        function marcarTodos(valor) {
 
-      participantes = participantes.map(p => ({
+            participantes = participantes.map(p => ({
 
-        ...p,
+                ...p,
 
-        presente: valor
+                presente: valor
 
-      }));
+            }));
 
-      renderParticipantes();
+            renderParticipantes();
 
-    }
+        }
 
 
-    function actualizarContador() {
+        function actualizarContador() {
 
-      const presentes = participantes.filter(p => p.presente).length;
+            const presentes = participantes.filter(p => p.presente).length;
 
-      document.getElementById('contador').textContent =
+            document.getElementById('contador').textContent =
 
-        `Presentes: ${presentes} / ${participantes.length}`;
+                `Presentes: ${presentes} / ${participantes.length}`;
 
-    }
+        }
 
 
-    function guardar() {
+        function guardar() {
 
-      const idSesion = document.getElementById('sesion').value;
+            const idSesion =
+                document.getElementById('sesion').value;
 
+            if (!idSesion) {
 
-      if (!idSesion) {
+                mostrarMensaje(
+                    'Selecciona una sesión.',
+                    false
+                );
 
-        mostrarMensaje('Selecciona una sesión.', false);
+                return;
 
-        return;
+            }
 
-      }
+            document.getElementById('guardar').disabled = true;
 
+            mostrarCarga(true);
 
-      document.getElementById('guardar').disabled = true;
+            google.script.run
 
-      mostrarCarga(true);
+                .withSuccessHandler(resultado => {
 
+                    mostrarCarga(false);
 
-      google.script.run
+                    mostrarMensaje(
+                        `Sesión guardada correctamente: ` +
+                        `${resultado.presentes} presentes y ` +
+                        `${resultado.ausentes} ausentes.`,
+                        true
+                    );
 
-        .withSuccessHandler(resultado => {
+                    // Actualizar localmente
+                    const sesion = sesiones.find(
+                        s => s.id === idSesion
+                    );
 
-          mostrarCarga(false);
+                    if (sesion) {
+                        sesion.estado = 'REGISTRADA';
+                    }
 
-          document.getElementById('guardar').disabled = false;
+                    // Esperar un momento y cargar
+                    // automáticamente la siguiente sesión
+                    setTimeout(() => {
 
+                        cargarSesiones();
 
-          mostrarMensaje(
+                    }, 1000);
 
-            `Guardado: ${resultado.presentes} presentes y ` +
+                })
 
-            `${resultado.ausentes} ausentes.`,
+                .withFailureHandler(error => {
 
-            true
+                    mostrarCarga(false);
 
-          );
+                    document.getElementById('guardar').disabled = false;
 
+                    mostrarError(error);
 
-          const sesion = sesiones.find(s => s.id === idSesion);
+                })
 
-          if (sesion) {
+                .guardarAsistencia(
+                    idSesion,
+                    participantes
+                );
 
-            sesion.estado = 'REGISTRADA';
+        }
 
-            document.getElementById('estadoSesion').textContent = 'REGISTRADA';
 
-          }
+        function mostrarCarga(visible) {
 
-        })
+            document.getElementById('cargando').style.display =
 
-        .withFailureHandler(error => {
+                visible ? 'block' : 'none';
 
-          document.getElementById('guardar').disabled = false;
+        }
 
-          mostrarError(error);
 
-        })
+        function mostrarError(error) {
 
-        .guardarAsistencia(idSesion, participantes);
+            mostrarCarga(false);
 
-    }
+            const texto = error && error.message
 
+                ? error.message
 
-    function mostrarCarga(visible) {
+                : String(error);
 
-      document.getElementById('cargando').style.display =
+            mostrarMensaje(texto, false);
 
-        visible ? 'block' : 'none';
+        }
 
-    }
 
+        function mostrarMensaje(texto, correcto) {
 
-    function mostrarError(error) {
+            const mensaje = document.getElementById('mensaje');
 
-      mostrarCarga(false);
+            mensaje.textContent = texto;
 
-      const texto = error && error.message
+            mensaje.className = `mensaje ${correcto ? 'ok' : 'error'}`;
 
-        ? error.message
+        }
 
-        : String(error);
 
-      mostrarMensaje(texto, false);
+        function escapar(texto) {
 
-    }
+            return String(texto ?? '')
 
+                .replaceAll('&', '&amp;')
 
-    function mostrarMensaje(texto, correcto) {
+                .replaceAll('<', '&lt;')
 
-      const mensaje = document.getElementById('mensaje');
+                .replaceAll('>', '&gt;')
 
-      mensaje.textContent = texto;
+                .replaceAll('"', '&quot;')
 
-      mensaje.className = `mensaje ${correcto ? 'ok' : 'error'}`;
+                .replaceAll("'", '&#039;');
 
-    }
+        }
 
-
-    function escapar(texto) {
-
-      return String(texto ?? '')
-
-        .replaceAll('&', '&amp;')
-
-        .replaceAll('<', '&lt;')
-
-        .replaceAll('>', '&gt;')
-
-        .replaceAll('"', '&quot;')
-
-        .replaceAll("'", '&#039;');
-
-    }
-
-  </script>
+    </script>
 
 </body>
 
 </html>
-
